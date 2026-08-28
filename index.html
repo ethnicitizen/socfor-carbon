@@ -6,6 +6,8 @@
     <title>QThink-X ~ SMART Carbon Logbook - Hutan Adat Tigo Luhah Kemantan</title>
     <!-- Memuat manifes PWA untuk instalasi offline -->
     <link rel="manifest" href="manifest.json">
+    <!-- Memuat file style.css eksternal -->
+    <link rel="stylesheet" href="style.css">
     <!-- Memuat Tailwind CSS & Ikon Lucide untuk UI Premium Android -->
     <script src="https://jsdelivr.net"></script>
     <link rel="stylesheet" href="https://cloudflare.com">
@@ -138,7 +140,7 @@
                         <input type="text" id="s_sumber" required placeholder="Contoh: Landsat 9 / Sentinel-2 L2A / PlanetScope / SIGAP Kememhut" class="w-full p-2 border rounded-xl bg-gray-50 outline-none focus:bg-white focus:ring-2 focus:ring-blue-600">
                     </div>
                     <div class="space-y-2 bg-gray-50 p-3 rounded-xl border border-gray-200">
-                        <span class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Verifikasi Parameter GIS & Kebijakan</span>
+                        <span class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Verifikasi Parameter GIS & Kebijakan:</span>
                         <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="checkbox" id="c_batas" class="w-4 h-4 text-blue-600"> Batas Polygon 452 Ha Sesuai SK MenLHK</label>
                         <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="checkbox" id="c_defor" class="w-4 h-4 text-blue-600"> Analisis Laju Deforestasi < 5% Toleransi</label>
                         <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="checkbox" id="c_kebocoran" class="w-4 h-4 text-blue-600"> Pengecekan Kebocoran Batas Luar (Kawasan Penyangga TNKS)</label>
@@ -168,7 +170,7 @@
                         <tr class="bg-gray-100 text-gray-600 uppercase font-bold">
                             <th class="p-2 border-b">ID/Plot</th>
                             <th class="p-2 border-b">Pengukuran Lapangan</th>
-                            <th class="p-3 border-b text-center">Hasil (tCO2e)</th>
+                            <th class="p-3 border-b text-center">Jumlah Stok Carbon (tCO2e)</th>
                         </tr>
                     </thead>
                     <tbody id="tabel-database" class="divide-y divide-gray-100">
