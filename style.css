@@ -1,0 +1,142 @@
+/* ==========================================================================
+   STYLE UTAMA: QTHINK-X SMART CARBON PORTAL (CYBER-ORGANIC DESIGN)
+   Standar Resolusi Seluler Android Modern (Lebar Optimal: 360px - 420px)
+   ========================================================================== */
+
+/* 1. Pengaturan Dasar & Tipografi */
+@import url('https://googleapis.com');
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    background-color: #0b1329; /* Slate Gelap Premium */
+    color: #f8fafc;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 2. Efek Kaca Transparan Futuristik (Web 3.0 Glassmorphism) */
+.glass-card {
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(16, 185, 129, 0.15); /* Border hijau tipis menyala */
+    border-radius: 24px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:active {
+    transform: scale(0.99);
+    border-color: rgba(34, 211, 238, 0.3); /* Berubah cyan saat ditekan */
+}
+
+/* 3. Efek Pendar Cahaya Neon (Glow System) */
+.neon-glow-green {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.neon-glow-cyan {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+/* 4. Kostumisasi Input Form Agar Sangat Nyaman di HP Android */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(30, 41, 59, 0.7);
+    border: 1.5px solid rgba(71, 85, 105, 0.5);
+    border-radius: 14px;
+    color: #ffffff;
+    font-size: 13px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+input:focus, select:focus {
+    border-color: #10b981; /* Hijau Zamrud saat mengetik */
+    background: #0f172a;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* Label kecil di atas input */
+label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8; /* Abu-abu soft */
+    margin-bottom: 6px;
+}
+
+/* 5. Tombol Aksi (Buttons) Berkarakter */
+.btn-primary {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    transition: all 0.2s ease;
+}
+
+.btn-primary:active {
+    transform: scale(0.97);
+    background: linear-gradient(135deg, #047857 0%, #059669 100%);
+}
+
+/* 6. Desain Khusus Tabel Database Ledger */
+.ledger-container {
+    max-height: 180px;
+    overflow-y: auto;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+/* Gaya Scrollbar Android di dalam Aplikasi */
+.ledger-container::-webkit-scrollbar {
+    width: 4px;
+}
+.ledger-container::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+th {
+    background: #1e293b;
+    color: #94a3b8;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px;
+    letter-spacing: 0.02em;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+}
+
+/* Baris Log Darurat / Reversal Event */
+.row-reversal {
+    background: rgba(244, 63, 94, 0.08) !important;
+    color: #fda4af !important;
+}
+
+/* Font angka khusus untuk data Web3 */
+.font-web3-digits {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+}
