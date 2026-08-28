@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART Carbon Logbook - Hutan Adat Tigo Luhah Kemantan</title>
+    <!-- Memuat manifes PWA untuk instalasi offline -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Tailwind CSS untuk tampilan modern -->
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen pb-12">
+
+    <!-- Header Panel -->
+    <header class="bg-emerald-800 text-white p-6 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto text-center">
+            <h1 class="text-xl font-bold tracking-wide">🌳 SMART CARBON LOGBOOK</h1>
+            <p class="text-xs text-emerald-200 mt-0.5">Hutan Adat Tigo Luhah Kemantan [SK.6740/MENLHK-PSKL/KUM.1/12/2016]</p>
+            <div id="status-koneksi" class="inline-block mt-2 px-3 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-700 text-emerald-100">
+                Memeriksa Sinyal...
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 max-w-2xl">
+        
+        <!-- MODUL 1: INPUT DATA MENTAH POHON -->
+        <section class="bg-white p-5 rounded-2xl shadow-sm mb-5 border border-gray-200">
+            <h2 class="text-base font-bold text-emerald-800 border-b pb-2 mb-3">
+                🌲 Sensus Pohon (Strata 1 Hutan & Strata 2 Kebun)
+            </h2>
+            <form id="form-pohon" class="space-y-3">
+                <div>
+                    <label class="block text-[10px] font-bold uppercase text-gray-500 mb-0.5">No. Plot (PSP)</label>
+                    <input type="text" id="p_plot" required placeholder="Contoh: PSP-01" class="w-full p-2 border rounded-xl bg-gray-50 outline-none focus:bg-white focus:ring-2 focus:ring-emerald-600">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase text-gray-500 mb-0.5">Nama Spesies Lokal</label>
+                    <input type="text" id="p_spesies" required placeholder="Contoh: Meranti / Medang" class="w-full p-2 border rounded-xl bg-gray-50 outline-none focus:bg-white focus:ring-2 focus:ring-emerald-600">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-0.5">Keliling Batang (cm)</label>
+                        <input type="number" step="0.1" id="p_keliling" required placeholder="Pakai pita meteran" class="w-full p-2 border rounded-xl bg-gray-50 outline-none focus:bg-white focus:ring-2 focus:ring-emerald-600">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-0.5">Berat Jenis Kayu (g/cm³)</label>
+                        <input type="number" step="0.01" id="p_bj" value="0.57" required class="w-full p-2 border rounded-xl bg-gray-50 outline-none focus:bg-white focus:ring-2 focus:ring-emerald-600">
+                    </div>
+                </div>
+                <button type="button" onclick="hitungDanSimpanPohon()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold p-2.5 rounded-xl transition text-sm cursor-pointer shadow">
+                    Hitung & Simpan Offline
+                </button>
+            </form>
+        </section>
+
+        <!-- MODUL 2: INPUT DATA VEGETASI BAWAH -->
+        <section class="bg-white p-5 rounded-2xl shadow-sm mb-5 border border-gray-200">
+            <h2 class="text-base font-bold text-amber-800 border-b pb-2 mb-3">
+                🌾 Ubinan Tumbuhan Bawah (Strata 3 Ilalang & Resam)
+            </h2>
+            <form id="form-vegetasi" class="space-y-3">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-0.5">No. Sampel Ubinan</label>
+                        <input type="text" id="v_plot" required placeholder="Contoh: UB-01" class="w-full p-2 border rounded-xl bg-gray-50 outline-none focus:bg-white focus:ring-2 focus:ring-amber-600">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-0.5">Tipe Gulma Dominan</label>
+                        <input type="text" id="v_tipe" required placeholder="Contoh: Ilalang / Pakis" class="w-full p-2 border rounded-xl bg-gray-50 outline-none focus:bg-white focus:ring-2 focus:ring-amber-600">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-0.5">Berat Basah Lapangan (gram)</label>
+                        <input type="number" id="v_bb_total" required placeholder="Total plot 1x1m" class="w-full p-2 border rounded-xl bg-gray-50 outline-none focus:bg-white focus:ring-2 focus:ring-amber-600">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-0.5">Berat Kering Oven (gram)</label>
+                        <input type="number" step="0.1" id="v_bk_sub" required placeholder="Dari sampel 100g" class="w-full p-2 border rounded-xl bg-gray-50 outline-none focus:bg-white focus:ring-2 focus:ring-amber-600">
+                    </div>
+                </div>
+                <button type="button" onclick="hitungDanSimpanVegetasi()" class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold p-2.5 rounded-xl transition text-sm cursor-pointer shadow">
+                    Hitung & Simpan Offline
+                </button>
+            </form>
+        </section>
+
+        <!-- DATA TERSEDIA -->
+        <section class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-2 mb-3 gap-2">
+                <h2 class="text-base font-bold text-gray-800">📊 Data Patroli Tersimpan (Cache)</h2>
+                <div class="flex gap-2 w-full sm:w-auto">
+                    <button onclick="eksporKeCSV()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow cursor-pointer flex-1 sm:flex-none">
+                        📥 Unduh CSV (Excel)
+                    </button>
+                    <button onclick="hapusSemuaData()" class="bg-red-500 hover:bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow cursor-pointer flex-1 sm:flex-none">
+                        🗑️ Reset
+                    </button>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-[11px] border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-600 uppercase font-bold">
+                            <th class="p-2 border-b">ID/Plot</th>
+                            <th class="p-2 border-b">Pengukuran Lapangan</th>
+                            <th class="p-3 border-b text-center">Hasil (tCO2e)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabel-database" class="divide-y divide-gray-100">
+                        <!-- Data dimasukkan oleh JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Memuat file logika javascript terpisah -->
+    <script src="app.js"></script>
+</body>
+</html>
