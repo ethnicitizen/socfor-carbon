@@ -1,0 +1,17 @@
+{
+  "short_name": "CarbonLog",
+  "name": "SMART Carbon Logbook Tigo Luhah Kemantan",
+  "icons": [
+    {
+      "src": "https://flaticon.com",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#064e3b",
+  "theme_color": "#064e3b",
+  "display": "standalone",
+  "orientation": "portrait"
+}
